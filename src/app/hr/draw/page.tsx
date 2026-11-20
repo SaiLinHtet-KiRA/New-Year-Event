@@ -22,9 +22,8 @@ export default async function DrawPage() {
         description="Run the draw, publish winners, record collection and report to management."
       />
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <StatCard label="Participants" value={stats.participants} />
-        <StatCard label="Registered" value={stats.registered} />
         <StatCard label="Winners" value={stats.winners} />
         <StatCard label="Prizes collected" value={stats.collected} />
         <StatCard label="Pending" value={stats.pending} />

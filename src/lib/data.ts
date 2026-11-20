@@ -47,6 +47,21 @@ export async function getEvent(): Promise<EventConfig> {
   return event;
 }
 
+export async function deleteAllParticipants(): Promise<void> {
+  await getEvent();
+  const db = await getDb();
+
+  await Promise.all([
+    db.collection<Participant>("participants").deleteMany({}),
+    db.collection<Winner>("winners").deleteMany({}),
+  ]);
+
+  await db.collection<EventConfig>("events").updateOne(
+    { _id: EVENT_ID },
+    { $set: { drawAt: null, publishedAt: null, published: false } },
+  );
+}
+
 export async function addPrize(nameRaw: string, countRaw: number): Promise<void> {
   const name = nameRaw.trim();
   const count = Math.trunc(countRaw);

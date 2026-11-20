@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import {
   addPrize,
   checkResult,
+  deleteAllParticipants,
   markCollected,
   publishWinners,
   registerParticipant,
@@ -59,6 +60,26 @@ export async function addPrizeAction(
     return {
       status: "error",
       message: error instanceof Error ? error.message : "Could not add the prize.",
+    };
+  }
+}
+
+export async function deleteAllParticipantsAction(
+  _previous: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  void formData;
+  try {
+    await deleteAllParticipants();
+    refresh();
+    return {
+      status: "success",
+      message: "All participants and winners deleted. The draw was reset.",
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error instanceof Error ? error.message : "Could not delete participants.",
     };
   }
 }

@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { publishAction, runDrawAction } from "@/app/actions";
+import DeleteAllParticipants from "@/components/delete-all-participants";
 import { SubmitButton } from "@/components/ui";
 import type { FormState } from "@/lib/types";
 
@@ -53,6 +54,10 @@ export default function DrawControls({
           </p>
         ) : null,
       )}
+
+      <div className="border-t border-stone-100 pt-4">
+        <DeleteAllParticipants />
+      </div>
     </div>
   );
 }

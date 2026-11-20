@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { connection } from "next/server";
+import DeleteAllParticipants from "@/components/delete-all-participants";
 import { Card, EmptyState, PageHeading, StatCard, StatusBadge, Table } from "@/components/ui";
 import { getDashboardStats, getEvent, getParticipants } from "@/lib/data";
 import { formatDate, formatDateTime } from "@/lib/format";
@@ -49,7 +50,11 @@ export default async function ParticipantsPage({
         />
       </div>
 
-      <Card title="Search participants" className="mt-6">
+      <Card
+        title="Search participants"
+        className="mt-6"
+        action={<DeleteAllParticipants />}
+      >
         <form method="get" className="flex flex-wrap items-end gap-3">
           <label className="min-w-[220px] flex-1">
             <span className="mb-1.5 block text-sm font-medium text-stone-700">
